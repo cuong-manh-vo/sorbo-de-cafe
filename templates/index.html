@@ -1,9 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{config.title}}</title>
-<head>
-<body>
-	{{ section.content | safe }}
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+{% set blog = get_section(path="blog/_index.md") %}
+<ul class="post-list">
+	{% for page in blog.pages %}
+	<li class="post-list-item">
+		<a class="post-list-title" href="{{ page.permalink }}">{{ page.title }}</a>
+		<p class="post-list-description">{{ page.description }}</p>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock content %}
